@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.maciek.LuxuryCarRentApplication
+web: java -cp target/classes:target/dependency/* com.maciek.LuxuryCarRentApplication
