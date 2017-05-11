@@ -31,4 +31,8 @@ public class RentalService {
     public List<RentalTO> getRentalTOs(){
         return rentalRepository.findAll().stream().map(RentalTO::new).collect(Collectors.toList());
     }
+
+    public List<RentalTO> getRentalListByUserId(int userId) {
+        return rentalRepository.findAllByUserId(userId).stream().map(RentalTO::new).collect(Collectors.toList());
+    }
 }
