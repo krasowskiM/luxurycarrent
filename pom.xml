@@ -6,7 +6,7 @@
 	<groupId>com.maciek</groupId>
 	<artifactId>luxurycarrent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>luxurycarrent</name>
 	<description>Car rent project</description>
