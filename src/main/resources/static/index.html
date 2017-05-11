@@ -25,34 +25,43 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <!--Ui-bootstrap-->
-    <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <!--<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>-->
 
     <script src="js/carrentapp.js"></script>
     <script src="js/controller/maincontroller.js"></script>
+    <script src="js/controller/userpanelcontroller.js"></script>
+    <script src="js/controller/carcontroller.js"></script>
+    <script src="js/controller/rentalcontroller.js"></script>
 </head>
 <body>
-<div ng-controller="mainController">
+<div class="container" ng-controller="mainController">
     <div class="row">
-        <div class="panel panel-primary col-sm-6" ng-show="notLoggedIn">
+        <div class="panel panel-info col-md-6 col-md-offset-3 text-center" ng-show="notLoggedIn">
             <div class="panel-heading">
-                <h5>Register</h5>
+                <div class="row">
+                    <div class="col-sm-6"><h5><a href="#" ng-click="panelLogin()"><span
+                            class="glyphicon glyphicon-log-in"></span>
+                        Login</a>
+                    </h5></div>
+                    <div class="col-sm-6">
+                        <h5><a href="#" ng-click="panelRegister()"><span class="glyphicon glyphicon-user"></span>
+                            Register</a>
+                        </h5>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <input type="text" ng-model="regData.email" placeholder="Email"/>
-                <input type="text" ng-model="regData.password" placeholder="Password"/>
-                <input type="text" ng-model="regData.passwordRetype" placeholder="Retype password"/>
-                <button ng-click="register()"><span class="glyphicon glyphicon-user"></span> Register</button>
+            <div class="panel-body" ng-show="registerClicked">
+                <input class="form-control" type="text" ng-model="regData.email" placeholder="Email"/>
+                <input class="form-control" type="text" ng-model="regData.password" placeholder="Password"/>
+                <input class="form-control" type="text" ng-model="regData.passwordRetype"
+                       placeholder="Confirm password"/>
+                <button class="btn btn-primary col-sm-12" ng-click="register()">Register</button>
             </div>
-        </div>
 
-        <div class="panel panel-primary col-sm-6" ng-show="notLoggedIn">
-            <div class="panel-heading">
-                <h5>Login</h5>
-            </div>
-            <div class="panel-body">
-                <input type="text" ng-model="loginData.email" placeholder="Email"/>
-                <input type="text" ng-model="loginData.password" placeholder="Password"/>
-                <button ng-click="login()"><span class="glyphicon glyphicon-login"></span> Login</button>
+            <div class="panel-body" ng-show="loginClicked">
+                <input class="form-control" type="text" ng-model="loginData.email" placeholder="Email"/>
+                <input class="form-control" type="text" ng-model="loginData.password" placeholder="Password"/>
+                <button class="btn btn-primary col-sm-12" ng-click="login()">Login</button>
             </div>
         </div>
     </div>
