@@ -1,5 +1,5 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
+#!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -22,6 +22,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-.mvn/
-mvnw
-mvnw.cmd
+#.mvn/
+#mvnw
+#mvnw.cmd
+src/main/resources/templates/
