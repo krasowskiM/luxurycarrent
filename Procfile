@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.maciek.LuxuryCarRentApplication
+web: java -Dserver.port=$PORT $JAVA_OPTS -war target/luxurycarrent-0.0.1-SNAPSHOT.war
