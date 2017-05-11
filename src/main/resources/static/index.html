@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="carRentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Luxury car rent!</title>
+
+    <!--jQuery-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!--Angular animate-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    <!--Angular ui-router-->
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!--Moment-->
+    <script src="//momentjs.com/downloads/moment.min.js"></script>
+    <!--Full calendar-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <!--Ui-bootstrap-->
+    <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <script src="js/carrentapp.js"></script>
+    <script src="js/controller/maincontroller.js"></script>
+</head>
+<body>
+<div ng-controller="mainController">
+    <div class="row">
+        <div class="panel panel-primary col-sm-6" ng-show="notLoggedIn">
+            <div class="panel-heading">
+                <h5>Register</h5>
+            </div>
+            <div class="panel-body">
+                <input type="text" ng-model="regData.email" placeholder="Email"/>
+                <input type="text" ng-model="regData.password" placeholder="Password"/>
+                <input type="text" ng-model="regData.passwordRetype" placeholder="Retype password"/>
+                <button ng-click="register()"><span class="glyphicon glyphicon-user"></span> Register</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary col-sm-6" ng-show="notLoggedIn">
+            <div class="panel-heading">
+                <h5>Login</h5>
+            </div>
+            <div class="panel-body">
+                <input type="text" ng-model="loginData.email" placeholder="Email"/>
+                <input type="text" ng-model="loginData.password" placeholder="Password"/>
+                <button ng-click="login()"><span class="glyphicon glyphicon-login"></span> Login</button>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>
+</body>
+</html>

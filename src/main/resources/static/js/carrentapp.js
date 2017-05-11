@@ -1,0 +1,1 @@
+var carRentApp = angular.module('carRentApp', []);
