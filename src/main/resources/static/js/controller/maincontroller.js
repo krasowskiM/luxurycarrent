@@ -1,9 +1,11 @@
-carRentApp.controller('mainController', function ($scope, $state) {
+carRentApp.controller('mainController', function ($scope, $state, $http) {
     $scope.notLoggedIn = true;
     $scope.regData = undefined;
     $scope.loginData = undefined;
     $scope.registerClicked = false;
     $scope.loginClicked = true;
+    $scope.loginError = undefined;
+    $scope.registerResponse = undefined;
 
     $scope.panelRegister = function () {
         $scope.registerClicked = true;
@@ -16,11 +18,17 @@ carRentApp.controller('mainController', function ($scope, $state) {
     };
 
     $scope.register = function () {
-
+        $http.put('/register', $scope.regData).then(function (response) {
+            $scope.registerResponse = response.data;
+        });
     };
 
     $scope.login = function () {
         $scope.notLoggedIn = false;
-        $state.go('userpanel');
+        $http.post('/login', $scope.loginData).then(function (response) {
+            $state.go('userpanel');
+        }, function (response) {
+            $scope.loginError = response.data;
+        });
     };
 });

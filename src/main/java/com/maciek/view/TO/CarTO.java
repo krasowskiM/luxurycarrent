@@ -25,4 +25,32 @@ public class CarTO {
         this.dailyRentalCost = car.getDailyRentalCost();
         this.kmRentalCost = car.getKmRentalCost();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRegNumber() {
+        return regNumber;
+    }
+
+    public int getStateOfCounter() {
+        return stateOfCounter;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public BigDecimal getDailyRentalCost() {
+        return dailyRentalCost;
+    }
+
+    public BigDecimal getKmRentalCost() {
+        return kmRentalCost;
+    }
 }

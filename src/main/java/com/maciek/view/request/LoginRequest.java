@@ -1,4 +1,4 @@
-package com.maciek.view.controller;
+package com.maciek.view.request;
 
 /**
  * Created by Maciek on 2017-05-11.

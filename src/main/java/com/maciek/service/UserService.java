@@ -4,11 +4,8 @@ import com.maciek.exception.InvalidCredentialsException;
 import com.maciek.exception.InvalidPasswordException;
 import com.maciek.persistence.model.User;
 import com.maciek.persistence.repo.UserRepository;
-import com.maciek.view.TO.UserTO;
-import com.maciek.view.controller.LoginResponse;
+import com.maciek.view.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,14 +18,11 @@ public class UserService {
 
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
-    private RentalService rentalService;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       RentalService rentalService){
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.rentalService = rentalService;
     }
 
     @Transactional
@@ -50,8 +44,6 @@ public class UserService {
             if(!passwordEncoder.matches(password, user.getPasswordHash())){
                 throw new InvalidPasswordException();
             }
-//            UserTO userTO = new UserTO(user);
-//            userTO.setRentals(rentalService.getRentalListByUserId(user.getId()));
             return new LoginResponse("OK");
         }
     }

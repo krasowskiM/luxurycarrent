@@ -1,4 +1,22 @@
 <div>
     <h5>List of cars</h5>
 
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Num of seats</th>
+            <th>Daily rental cost</th>
+            <th>Km rental cost</th>
+            <th>Rent</th>
+        </tr>
+        <tr ng-repeat="car in cars">
+            <td>{{car.name}}</td>
+            <td>{{car.seats}}</td>
+            <td>{{car.dailyRentalCost}}</td>
+            <td>{{car.kmRentalCost}}</td>
+            <td>
+                <button class="btn btn-primary" ng-click="rent(car.id)"> Rent</button>
+            </td>
+        </tr>
+    </table>
 </div>

@@ -3,6 +3,7 @@ package com.maciek.persistence.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Date;
 
 /**
  * Created by Maciek on 2017-05-10.
@@ -16,10 +17,10 @@ public class Rental {
     private int id;
 
     @Column(name = "start_date")
-    private Instant startDate;
+    private Date startDate;
 
     @Column(name = "end_date")
-    private Instant endDate;
+    private Date endDate;
 
     @Column(name = "cost")
     private BigDecimal cost;
@@ -43,19 +44,19 @@ public class Rental {
         this.id = id;
     }
 
-    public Instant getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Instant startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Instant getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Instant endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

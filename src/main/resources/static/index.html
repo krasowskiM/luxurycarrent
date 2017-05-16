@@ -62,6 +62,9 @@
                 <input class="form-control" type="text" ng-model="loginData.email" placeholder="Email"/>
                 <input class="form-control" type="text" ng-model="loginData.password" placeholder="Password"/>
                 <button class="btn btn-primary col-sm-12" ng-click="login()">Login</button>
+                <div class="alert alert-danger" ng-show="loginError != null">
+                    {{loginError.cause}}
+                </div>
             </div>
         </div>
     </div>
