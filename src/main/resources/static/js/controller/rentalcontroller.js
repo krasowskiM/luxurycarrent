@@ -4,5 +4,8 @@ carRentApp.controller('rentalController', function ($scope, $http) {
 
     $http.get('/rentals').then(function (response) {
         $scope.rentals = response.data;
+        for(var i = 0; i < $scope.rentals.length; i++){
+            $scope.rentals[i].startTime = new Date($scope.rentals[i].startTime).toLocaleString();
+        }
     });
 });

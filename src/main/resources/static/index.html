@@ -52,18 +52,24 @@
             </div>
             <div class="panel-body" ng-show="registerClicked">
                 <input class="form-control" type="text" ng-model="regData.email" placeholder="Email"/>
-                <input class="form-control" type="text" ng-model="regData.password" placeholder="Password"/>
-                <input class="form-control" type="text" ng-model="regData.passwordRetype"
+                <input class="form-control" type="password" ng-model="regData.password" placeholder="Password"/>
+                <input class="form-control" type="password" ng-model="regData.passwordRetype"
                        placeholder="Confirm password"/>
                 <button class="btn btn-primary col-sm-12" ng-click="register()">Register</button>
+                <div class="alert alert-success" ng-show="registerOK">
+                    {{registerOK.status}}
+                </div>
+                <div class="alert alert-danger" ng-show="registerError">
+                    {{registerError.message}}
+                </div>
             </div>
 
             <div class="panel-body" ng-show="loginClicked">
                 <input class="form-control" type="text" ng-model="loginData.email" placeholder="Email"/>
-                <input class="form-control" type="text" ng-model="loginData.password" placeholder="Password"/>
+                <input class="form-control" type="password" ng-model="loginData.password" placeholder="Password"/>
                 <button class="btn btn-primary col-sm-12" ng-click="login()">Login</button>
-                <div class="alert alert-danger" ng-show="loginError != null">
-                    {{loginError.cause}}
+                <div class="alert alert-danger" ng-show="loginError">
+                    {{loginError.message}}
                 </div>
             </div>
         </div>

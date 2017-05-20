@@ -7,9 +7,7 @@ public class RegistrationRequest {
     private String email;
     private String password;
 
-    public RegistrationRequest(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public RegistrationRequest() {
     }
 
     public String getEmail() {
@@ -19,4 +17,5 @@ public class RegistrationRequest {
     public String getPassword() {
         return password;
     }
+
 }

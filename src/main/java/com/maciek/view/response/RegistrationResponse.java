@@ -9,4 +9,8 @@ public class RegistrationResponse {
     public RegistrationResponse(String status) {
         this.status = status;
     }
+
+    public String getStatus() {
+        return status;
+    }
 }

@@ -5,7 +5,8 @@ carRentApp.controller('mainController', function ($scope, $state, $http) {
     $scope.registerClicked = false;
     $scope.loginClicked = true;
     $scope.loginError = undefined;
-    $scope.registerResponse = undefined;
+    $scope.registerOK = undefined;
+    $scope.registerError = undefined;
 
     $scope.panelRegister = function () {
         $scope.registerClicked = true;
@@ -19,7 +20,9 @@ carRentApp.controller('mainController', function ($scope, $state, $http) {
 
     $scope.register = function () {
         $http.put('/register', $scope.regData).then(function (response) {
-            $scope.registerResponse = response.data;
+            $scope.registerOK = response.data;
+        }, function (response) {
+            $scope.registerError = response.data;
         });
     };
 
