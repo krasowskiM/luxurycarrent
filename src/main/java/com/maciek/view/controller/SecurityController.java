@@ -35,6 +35,6 @@ public class SecurityController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public LoginResponse login(@RequestBody LoginRequest loginRequest) throws InvalidCredentialsException, InvalidPasswordException {
-        return userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
+        return userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword(), loginRequest.isRemember());
     }
 }

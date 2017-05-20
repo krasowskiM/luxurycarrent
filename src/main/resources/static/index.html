@@ -67,6 +67,7 @@
             <div class="panel-body" ng-show="loginClicked">
                 <input class="form-control" type="text" ng-model="loginData.email" placeholder="Email"/>
                 <input class="form-control" type="password" ng-model="loginData.password" placeholder="Password"/>
+                <input type="checkbox" ng-model="loginData.remember" /> Remember me
                 <button class="btn btn-primary col-sm-12" ng-click="login()">Login</button>
                 <div class="alert alert-danger" ng-show="loginError">
                     {{loginError.message}}

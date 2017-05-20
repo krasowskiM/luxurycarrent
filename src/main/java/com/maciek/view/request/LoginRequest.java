@@ -6,6 +6,7 @@ package com.maciek.view.request;
 public class LoginRequest {
     private String email;
     private String password;
+    private boolean remember;
 
     public LoginRequest() {
     }
@@ -16,5 +17,9 @@ public class LoginRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isRemember() {
+        return remember;
     }
 }

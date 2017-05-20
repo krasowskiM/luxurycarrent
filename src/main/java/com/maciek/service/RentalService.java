@@ -7,6 +7,7 @@ import com.maciek.persistence.repo.CarRepository;
 import com.maciek.persistence.repo.RentalRepository;
 import com.maciek.persistence.repo.UserRepository;
 import com.maciek.view.TO.RentalTO;
+import com.maciek.view.response.RentalHistoryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,10 @@ public class RentalService {
         this.carRepository = carRepository;
     }
 
+    private static boolean test(Rental rental) {
+        return rental.getEndDate() != null;
+    }
+
 
     @Transactional
     public void createNewRental(int userId, int carId) {
@@ -58,12 +63,10 @@ public class RentalService {
     }
 
     @Transactional(readOnly = true)
-    public List<RentalTO> getRentalTOs(){
-        return rentalRepository.findAll().stream().map(RentalTO::new).collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public List<RentalTO> getRentalListByUserId(int userId) {
-        return rentalRepository.findAllByUserId(userId).stream().map(RentalTO::new).collect(Collectors.toList());
+    public RentalHistoryResponse getRentalListByUserId(int userId) {
+        List<RentalTO> rentals = rentalRepository.findAllByUserId(userId).stream()
+                .map(RentalTO::new).collect(Collectors.toList());
+        return new RentalHistoryResponse(rentals.stream().filter(rentalTO -> rentalTO.getEndTime() != null).collect(Collectors.toList()),
+                rentals.stream().filter(rentalTO -> rentalTO.getEndTime() == null).findAny().orElse(new RentalTO()));
     }
 }

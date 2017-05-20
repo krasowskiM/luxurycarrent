@@ -8,6 +8,7 @@ import com.maciek.utils.AuthenticationContext;
 import com.maciek.view.TO.CarTO;
 import com.maciek.view.TO.RentalTO;
 import com.maciek.view.TO.UserTO;
+import com.maciek.view.response.RentalHistoryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +36,7 @@ public class UserPanelController {
     }
 
     @RequestMapping(value = "/rentals", method = RequestMethod.GET)
-    public List<RentalTO> rentals() {
+    public RentalHistoryResponse rentals() {
         return rentalService.getRentalListByUserId(AuthenticationContext.getCurrentUsersId());
     }
 

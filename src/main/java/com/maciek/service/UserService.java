@@ -2,7 +2,9 @@ package com.maciek.service;
 
 import com.maciek.exception.InvalidCredentialsException;
 import com.maciek.exception.InvalidPasswordException;
+import com.maciek.persistence.model.Role;
 import com.maciek.persistence.model.User;
+import com.maciek.persistence.repo.RoleRepository;
 import com.maciek.persistence.repo.UserRepository;
 import com.maciek.view.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserService(UserRepository userRepository, RoleRepository roleRepository,
+                       PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     @Transactional
@@ -36,7 +42,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public LoginResponse loginUser(String email, String password) throws InvalidCredentialsException, InvalidPasswordException {
+    public LoginResponse loginUser(String email, String password, boolean isRemembered) throws InvalidCredentialsException, InvalidPasswordException {
         if(email == null || password == null || email.isEmpty() || password.isEmpty()){
             throw new InvalidCredentialsException();
         } else {
