@@ -1,4 +1,4 @@
-carRentApp.controller('carController', function ($scope, $http) {
+carRentApp.controller('carController', function ($scope, $http, $state) {
     $scope.cars = [];
 
     $http.get('api/cars').then(function (response) {
@@ -7,7 +7,7 @@ carRentApp.controller('carController', function ($scope, $http) {
 
     $scope.rent = function (carId) {
         $http.put('api/rent/' + carId).then(function (response) {
-
+            $state.reload();
         });
     };
 });

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +75,12 @@ public class UserService {
     public UserTO userTO(){
         User user = userRepository.findOne(AuthenticationContext.getCurrentUsersId());
         return new UserTO(user);
+    }
+
+    @Transactional
+    public void addToUserAccount(BigDecimal amount) {
+        User user = userRepository.findOne(AuthenticationContext.getCurrentUsersId());
+        user.setFunds(user.getFunds().add(amount));
+        userRepository.save(user);
     }
 }

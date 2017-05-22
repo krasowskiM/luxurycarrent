@@ -1,6 +1,7 @@
 package com.maciek.view.TO;
 
 import com.maciek.persistence.model.Car;
+import com.maciek.utils.RentStatus;
 
 import java.math.BigDecimal;
 
@@ -15,6 +16,7 @@ public class CarTO {
     private int seats;
     private BigDecimal dailyRentalCost;
     private BigDecimal kmRentalCost;
+    private RentStatus rented;
 
     public CarTO(Car car) {
         this.id = car.getId();
@@ -24,6 +26,7 @@ public class CarTO {
         this.seats = car.getSeats();
         this.dailyRentalCost = car.getDailyRentalCost();
         this.kmRentalCost = car.getKmRentalCost();
+        this.rented = car.getRented();
     }
 
     public int getId() {
@@ -52,5 +55,9 @@ public class CarTO {
 
     public BigDecimal getKmRentalCost() {
         return kmRentalCost;
+    }
+
+    public RentStatus getRented() {
+        return rented;
     }
 }

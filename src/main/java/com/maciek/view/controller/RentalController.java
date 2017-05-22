@@ -2,12 +2,11 @@ package com.maciek.view.controller;
 
 import com.maciek.service.RentalService;
 import com.maciek.utils.AuthenticationContext;
+import com.maciek.view.request.ReturnRequest;
 import com.maciek.view.response.RentalResponse;
+import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Maciek on 2017-05-16.
@@ -30,8 +29,8 @@ public class RentalController {
     }
 
     @RequestMapping(value = "/api/return/{id}", method = RequestMethod.POST)
-    public RentalResponse returnCar(@PathVariable("id") int rentalId){
-        rentalService.carReturned(rentalId);
+    public RentalResponse returnCar(@PathVariable("id") int rentalId, @RequestBody ReturnRequest returnRequest){
+        rentalService.carReturned(rentalId, returnRequest.getStateOfCounter());
         return new RentalResponse("Car returned!");
     }
 }

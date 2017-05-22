@@ -1,11 +1,19 @@
-<div class="row" ng-show="currentRentals" ng-repeat="currentRental in currentRentals">
-    <div class="col-sm-4">Currently rented car: {{currentRental.carName}}</div>
-    <div class="col-sm-4">Rent started on: {{currentRental.startTime}}</div>
-    <div class="col-sm-4">
-        <button class="btn btn-primary" ng-click="return(currentRental.rentalId)"> Return</button>
-    </div>
+<div>
+    <table class="table table-hover" ng-show="currentRentals[0] !== undefined">
+        <tr>
+            <th>Rented car</th>
+            <th>Rent start</th>
+        </tr>
+        <tr ng-repeat="currentRental in currentRentals">
+            <td>{{currentRental.carName}}</td>
+            <td>{{currentRental.startTime}}</td>
+            <td><input type="text" class="form-control" placeholder="State of counter" ng-model="retData.stateOfCounter" /></td>
+            <td>
+                <button class="btn btn-primary" ng-click="return(currentRental.rentalId)">Return</button>
+            </td>
+        </tr>
+    </table>
 </div>
-<br>
 <h4>List of your finished rentals</h4>
 <table class="table table-hover">
     <tr>

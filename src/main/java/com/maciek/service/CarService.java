@@ -1,9 +1,11 @@
 package com.maciek.service;
 
 import com.maciek.persistence.repo.CarRepository;
+import com.maciek.utils.RentStatus;
 import com.maciek.view.TO.CarTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +23,9 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<CarTO> getCarList() {
-        return carRepository.findAll().stream().map(CarTO::new).collect(Collectors.toList());
+        return carRepository.findAll().stream().filter(car -> car.getRented() == RentStatus.N)
+                .map(CarTO::new).collect(Collectors.toList());
     }
 }

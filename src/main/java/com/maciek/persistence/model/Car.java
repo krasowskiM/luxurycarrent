@@ -1,5 +1,7 @@
 package com.maciek.persistence.model;
 
+import com.maciek.utils.RentStatus;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -25,6 +27,10 @@ public class Car {
 
     @Column(name = "seats")
     private int seats;
+
+    @Column(name = "rented")
+    @Enumerated(value = EnumType.STRING)
+    private RentStatus rented;
 
     @Column(name = "daily_rental_cost")
     private BigDecimal dailyRentalCost;
@@ -89,5 +95,13 @@ public class Car {
 
     public void setKmRentalCost(BigDecimal kmRentalCost) {
         this.kmRentalCost = kmRentalCost;
+    }
+
+    public RentStatus getRented() {
+        return rented;
+    }
+
+    public void setRented(RentStatus rented) {
+        this.rented = rented;
     }
 }

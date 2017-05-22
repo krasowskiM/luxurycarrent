@@ -8,12 +8,17 @@ import com.maciek.utils.AuthenticationContext;
 import com.maciek.view.TO.CarTO;
 import com.maciek.view.TO.RentalTO;
 import com.maciek.view.TO.UserTO;
+import com.maciek.view.request.PaymentRequest;
 import com.maciek.view.response.RentalHistoryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -48,5 +53,11 @@ public class UserPanelController {
     @RequestMapping(value = "/api/userfunds", method = RequestMethod.GET)
     public UserTO userData() {
         return userService.userTO();
+    }
+
+    @RequestMapping(value = "/api/payment", method = RequestMethod.POST)
+    public ResponseEntity savePayment(@RequestBody PaymentRequest paymentRequest){
+        userService.addToUserAccount(new BigDecimal(paymentRequest.getAmount()));
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
