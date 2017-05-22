@@ -36,6 +36,12 @@ public class Rental {
     public Rental() {
     }
 
+    public Rental(User user, Car car, Date from) {
+        this.user = user;
+        this.car = car;
+        this.startDate = from;
+    }
+
     public int getId() {
         return id;
     }

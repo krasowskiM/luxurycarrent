@@ -1,7 +1,12 @@
-carRentApp.controller('userPanelController', function ($scope, $state) {
+carRentApp.controller('userPanelController', function ($http, $rootScope, $scope, $state) {
+    $scope.userTO = undefined;
 
+    $http.get('api/userfunds').then(function (response) {
+        $scope.userTO = response.data;
+    });
 
     $scope.logout = function () {
-        $state.go('/');
+        $rootScope.notLoggedIn = true;
+        $state.go('logout');
     };
 });

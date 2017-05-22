@@ -9,18 +9,20 @@ import java.util.List;
  */
 public class RentalHistoryResponse {
     private List<RentalTO> rentals;
-    private RentalTO currentRental;
+//    private RentalTO currentRental;
 
-    public RentalHistoryResponse(List<RentalTO> rentals, RentalTO currentRental) {
+    public RentalHistoryResponse(List<RentalTO> rentals
+//            , RentalTO currentRental
+    ) {
         this.rentals = rentals;
-        this.currentRental = currentRental;
+//        this.currentRental = currentRental;
     }
 
     public List<RentalTO> getRentals() {
         return rentals;
     }
 
-    public RentalTO getCurrentRental() {
-        return currentRental;
-    }
+//    public RentalTO getCurrentRental() {
+//        return currentRental;
+//    }
 }

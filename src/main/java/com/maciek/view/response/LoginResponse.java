@@ -6,6 +6,9 @@ package com.maciek.view.response;
 public class LoginResponse {
     private String status;
 
+    public LoginResponse() {
+    }
+
     public LoginResponse(String status) {
         this.status = status;
     }

@@ -29,12 +29,11 @@ public class SecurityController {
     @RequestMapping(value = "/register", method = RequestMethod.PUT)
     public RegistrationResponse registerUser(@RequestBody RegistrationRequest registrationRequest) throws InvalidCredentialsException {
         userService.registerUser(registrationRequest.getEmail(), registrationRequest.getPassword());
-
         return new RegistrationResponse("User registered!");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public LoginResponse login(@RequestBody LoginRequest loginRequest) throws InvalidCredentialsException, InvalidPasswordException {
-        return userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword(), loginRequest.isRemember());
+        return userService.loginUser(loginRequest);
     }
 }

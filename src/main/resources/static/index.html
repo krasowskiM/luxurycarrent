@@ -32,49 +32,12 @@
     <script src="js/controller/userpanelcontroller.js"></script>
     <script src="js/controller/carcontroller.js"></script>
     <script src="js/controller/rentalcontroller.js"></script>
+    <script src="js/controller/paymentcontroller.js"></script>
+    <script src="js/controller/logincontroller.js"></script>
 </head>
 <body>
 <div class="container" ng-controller="mainController">
-    <div class="row">
-        <div class="panel panel-info col-md-6 col-md-offset-3 text-center" ng-show="notLoggedIn">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-sm-6"><h5><a href="#" ng-click="panelLogin()"><span
-                            class="glyphicon glyphicon-log-in"></span>
-                        Login</a>
-                    </h5></div>
-                    <div class="col-sm-6">
-                        <h5><a href="#" ng-click="panelRegister()"><span class="glyphicon glyphicon-user"></span>
-                            Register</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body" ng-show="registerClicked">
-                <input class="form-control" type="text" ng-model="regData.email" placeholder="Email"/>
-                <input class="form-control" type="password" ng-model="regData.password" placeholder="Password"/>
-                <input class="form-control" type="password" ng-model="regData.passwordRetype"
-                       placeholder="Confirm password"/>
-                <button class="btn btn-primary col-sm-12" ng-click="register()">Register</button>
-                <div class="alert alert-success" ng-show="registerOK">
-                    {{registerOK.status}}
-                </div>
-                <div class="alert alert-danger" ng-show="registerError">
-                    {{registerError.message}}
-                </div>
-            </div>
 
-            <div class="panel-body" ng-show="loginClicked">
-                <input class="form-control" type="text" ng-model="loginData.email" placeholder="Email"/>
-                <input class="form-control" type="password" ng-model="loginData.password" placeholder="Password"/>
-                <input type="checkbox" ng-model="loginData.remember" /> Remember me
-                <button class="btn btn-primary col-sm-12" ng-click="login()">Login</button>
-                <div class="alert alert-danger" ng-show="loginError">
-                    {{loginError.message}}
-                </div>
-            </div>
-        </div>
-    </div>
     <div ui-view></div>
 </div>
 </body>

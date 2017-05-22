@@ -1,13 +1,13 @@
 carRentApp.controller('carController', function ($scope, $http) {
     $scope.cars = [];
 
-    $http.get('/cars').then(function (response) {
+    $http.get('api/cars').then(function (response) {
         $scope.cars = response.data;
     });
 
     $scope.rent = function (carId) {
-        $http.put('/rent/' + carId).then(function (response) {
+        $http.put('api/rent/' + carId).then(function (response) {
 
         });
-    }
+    };
 });

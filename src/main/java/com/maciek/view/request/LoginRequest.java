@@ -11,6 +11,12 @@ public class LoginRequest {
     public LoginRequest() {
     }
 
+    public LoginRequest(String email, String password, boolean remember) {
+        this.email = email;
+        this.password = password;
+        this.remember = remember;
+    }
+
     public String getEmail() {
         return email;
     }

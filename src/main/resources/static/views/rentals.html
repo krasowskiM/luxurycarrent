@@ -1,27 +1,23 @@
-<div>
-    <div class="row panel panel-primary" ng-show="currentRental">
-        <div class="panel panel-heading">Your current rentals</div>
-        <div class="panel panel-body">
-            <div class="col-sm-4">Car: {{currentRental.carName}}</div>
-            <div class="col-sm-4">Started on: {{currentRental.startTime}}</div>
-            <div class="col-sm-4">
-                <button class="btn btn-primary" ng-click="return()"> Return </button>
-            </div>
-        </div>
+<div class="row" ng-show="currentRentals" ng-repeat="currentRental in currentRentals">
+    <div class="col-sm-4">Currently rented car: {{currentRental.carName}}</div>
+    <div class="col-sm-4">Rent started on: {{currentRental.startTime}}</div>
+    <div class="col-sm-4">
+        <button class="btn btn-primary" ng-click="return(currentRental.rentalId)"> Return</button>
     </div>
-    <h5>List of your finished rentals</h5>
-    <table class="table table-hover">
-        <tr>
-            <th>Car</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Cost</th>
-        </tr>
-        <tr ng-repeat="rental in rentals">
-            <td>{{rental.carName}}</td>
-            <td>{{rental.startTime}}</td>
-            <td>{{rental.endTime}}</td>
-            <td>{{rental.cost}}</td>
-        </tr>
-    </table>
 </div>
+<br>
+<h4>List of your finished rentals</h4>
+<table class="table table-hover">
+    <tr>
+        <th>Car</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Cost</th>
+    </tr>
+    <tr ng-repeat="rental in rentals">
+        <td>{{rental.carName}}</td>
+        <td>{{rental.startTime}}</td>
+        <td>{{rental.endTime}}</td>
+        <td>{{rental.cost}}</td>
+    </tr>
+</table>

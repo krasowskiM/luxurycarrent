@@ -15,4 +15,7 @@ public class UserTO {
         this.funds = user.getFunds();
     }
 
+    public BigDecimal getFunds() {
+        return funds;
+    }
 }

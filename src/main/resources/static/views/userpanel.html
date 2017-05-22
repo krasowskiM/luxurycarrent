@@ -1,23 +1,26 @@
-<div class="navbar navbar-inverse">
-    <p class="navbar-text"> User navigation
-    </p>
-    <ul class="nav navbar-nav">
-        <li><a ui-sref=".cars">Car list</a></li>
-        <li><a ui-sref=".rentals">Your rentals</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <button class="btn btn-warning"><span class="glyphicon glyphicon-log-out" ng-click="logout()"></span> Logout
-            </button>
-        </li>
-    </ul>
-</div>
-
 <div class="panel panel-primary">
     <div class="panel panel-heading">
         <h4>Welcome to the user panel</h4>
     </div>
     <div class="panel panel-body">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <p class="navbar-text"> User navigation
+                </p>
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref=".cars">Car list</a></li>
+                    <li><a ui-sref=".rentals">Your rentals</a></li>
+                    <li><a ui-sref=".payment">Payments</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h3>Your funds: {{userTO.funds}}</h3>
+        <br>
         <div ui-view></div>
     </div>
 </div>

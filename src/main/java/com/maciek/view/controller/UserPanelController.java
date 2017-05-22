@@ -22,31 +22,31 @@ import java.util.List;
 @RestController
 public class UserPanelController {
 
-//    private UserService userService;
+    private UserService userService;
     private CarService carService;
     private RentalService rentalService;
 
     @Autowired
-    public UserPanelController(//UserService userService,
+    public UserPanelController(UserService userService,
                                CarService carService,
                                RentalService rentalService) {
-//        this.userService = userService;
+        this.userService = userService;
         this.carService = carService;
         this.rentalService = rentalService;
     }
 
-    @RequestMapping(value = "/rentals", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/rentals", method = RequestMethod.GET)
     public RentalHistoryResponse rentals() {
         return rentalService.getRentalListByUserId(AuthenticationContext.getCurrentUsersId());
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/cars", method = RequestMethod.GET)
     public List<CarTO> carList() {
         return carService.getCarList();
     }
 
-//    @RequestMapping(value = "/userdata", method = RequestMethod.GET)
-//    public UserTO userData() {
-//        return new UserTO(AuthenticationContext.getCurrentUsersId());
-//    }
+    @RequestMapping(value = "/api/userfunds", method = RequestMethod.GET)
+    public UserTO userData() {
+        return userService.userTO();
+    }
 }

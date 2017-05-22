@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,37 +37,29 @@ public class RentalService {
         this.carRepository = carRepository;
     }
 
-    private static boolean test(Rental rental) {
-        return rental.getEndDate() != null;
-    }
-
-
     @Transactional
     public void createNewRental(int userId, int carId) {
         User user = userRepository.findOne(userId);
         Car car = carRepository.findOne(carId);
 
-        Rental rental = new Rental();
-        rental.setStartDate(Date.from(Instant.now()));
-        rental.setUser(user);
-        rental.setCar(car);
-        rentalRepository.save(rental);
+        rentalRepository.save(new Rental(user, car, Date.from(Instant.now())));
     }
 
     @Transactional
-    @Modifying
     public void carReturned(int rentalId) {
         Rental rental = rentalRepository.findOne(rentalId);
         rental.setEndDate(Date.from(Instant.now()));
-        rental.setCost(BigDecimal.ONE);
+        rental.setCost(rental.getCar().getDailyRentalCost().add(rental.getCar().getKmRentalCost()));
         rentalRepository.save(rental);
+
     }
 
     @Transactional(readOnly = true)
     public RentalHistoryResponse getRentalListByUserId(int userId) {
         List<RentalTO> rentals = rentalRepository.findAllByUserId(userId).stream()
                 .map(RentalTO::new).collect(Collectors.toList());
-        return new RentalHistoryResponse(rentals.stream().filter(rentalTO -> rentalTO.getEndTime() != null).collect(Collectors.toList()),
-                rentals.stream().filter(rentalTO -> rentalTO.getEndTime() == null).findAny().orElse(new RentalTO()));
+        return new RentalHistoryResponse(rentals.stream().filter(rentalTO -> rentalTO.getEndTime() != null).collect(Collectors.toList())
+//                ,rentals.stream().filter(rentalTO -> rentalTO.getEndTime() == null).collect(Colle
+                );
     }
 }

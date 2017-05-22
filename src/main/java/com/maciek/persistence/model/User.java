@@ -26,10 +26,6 @@ public class User {
     @Column(name = "funds")
     private BigDecimal funds;
 
-    @OneToMany
-    @JoinColumn(name = "rental_id")
-    private List<Rental> rentalList;
-
     @ManyToMany(targetEntity = Role.class, fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
                 joinColumns = @JoinColumn(name = "user_id"),
@@ -74,14 +70,6 @@ public class User {
 
     public void setFunds(BigDecimal funds) {
         this.funds = funds;
-    }
-
-    public List<Rental> getRentalList() {
-        return rentalList;
-    }
-
-    public void setRentalList(List<Rental> rentalList) {
-        this.rentalList = rentalList;
     }
 
     public List<Role> getRoles() {
