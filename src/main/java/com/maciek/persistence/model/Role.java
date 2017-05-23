@@ -1,5 +1,7 @@
 package com.maciek.persistence.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements GrantedAuthority{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -31,5 +33,10 @@ public class Role {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String getAuthority() {
+        return value;
     }
 }

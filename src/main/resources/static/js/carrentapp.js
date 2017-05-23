@@ -1,4 +1,23 @@
-var carRentApp = angular.module('carRentApp', ['ui.router']);
+var carRentApp = angular.module('carRentApp', ['ui.router'])
+    .factory('TokenInterceptor', function ($q) {
+        return {
+            request: function (config) {
+                var authToken = localStorage.getItem('auth_token');
+                if(authToken){
+                    config.headers['X-AUTH-TOKEN'] = authToken;
+                }
+                return config;
+            },
+            responseError: function (error) {
+                if(error.status === 401 || error.status === 403){
+                    localStorage.clear();
+                }
+                return $q.reject(error);
+            }
+        };
+    }).config(function ($httpProvider) {
+        $httpProvider.interceptors.push('TokenInterceptor');
+    });
 
 carRentApp.config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');

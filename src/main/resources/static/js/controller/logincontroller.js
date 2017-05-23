@@ -35,6 +35,7 @@ carRentApp.controller('loginController', function ($rootScope, $scope, $http, $s
         } else {
             $http.post('/login', $scope.loginData).then(function (response) {
                 $rootScope.notLoggedIn = false;
+                localStorage.setItem('auth_token', response.headers('X-AUTH-TOKEN'));
                 $state.go('userpanel');
             }, function (response) {
                 $scope.loginError = response.data;

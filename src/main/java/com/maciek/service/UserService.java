@@ -41,6 +41,11 @@ public class UserService {
     }
 
     @Transactional
+    public User getByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
+    @Transactional
     public void registerUser(String email, String password) throws InvalidCredentialsException {
         if(email == null || password == null || email.isEmpty() || password.isEmpty()){
             throw new InvalidCredentialsException();
@@ -55,7 +60,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public LoginResponse loginUser(LoginRequest loginRequest) throws InvalidCredentialsException, InvalidPasswordException {
-        String email = loginRequest.getEmail();
+        String email = loginRequest.getUsername();
         String password = loginRequest.getPassword();
         if(email == null || password == null || email.isEmpty() || password.isEmpty()){
             throw new InvalidCredentialsException();

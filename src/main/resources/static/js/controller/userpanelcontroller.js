@@ -7,6 +7,7 @@ carRentApp.controller('userPanelController', function ($http, $rootScope, $scope
 
     $scope.logout = function () {
         $rootScope.notLoggedIn = true;
+        localStorage.clear();
         $state.go('logout');
     };
 });
